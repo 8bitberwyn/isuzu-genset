@@ -227,7 +227,7 @@
             <td id="audio0">
                 <div class="pair">
                     <h2>Calm <br> Breathing</h2>
-                    <img class="icon" src="/assets/face-icon.png">
+                    <img class="icon" src="./assets/face-icon.png">
                 </div>
 
                 <div class="visualizer-container">
@@ -239,13 +239,13 @@
             </td>
             <td id="audio3" rowspan="3">
                 <a class="reload" onClick="window.location.reload();">
-                    <img class="logo" src="/assets/logo.jpg">
+                    <img class="logo" src="./assets/logo.jpg">
                 </a>
                 <h2 class="center-title"><span class="red-text">Isuzu</span>Generator Running</h2>
                 <!-- <div class="visualizer-container-middle">
                     <canvas class="visualizer" data-db="55"></canvas>
                 </div> -->
-                <img class="generator-img" src="/assets/generator2.png">
+                <img class="generator-img" src="./assets/generator2.png">
                 <div class="trapezium-middle">
                     <strong class="single">51 - 57dB</strong>
                 </div>
@@ -253,7 +253,7 @@
             <td id="audio4">
                 <div class="pair">
                     <h2>Loud <br> Conversation</h2>
-                    <img class="icon" src="/assets/face-icon.png">
+                    <img class="icon" src="./assets/face-icon.png">
                 </div>
                 <div class="visualizer-container">
                     <canvas class="visualizer" data-db="60"></canvas>
@@ -269,7 +269,7 @@
             <td id="audio1">
                 <div class="pair">
                     <h2>Quiet <br> Room</h2>
-                    <img class="icon" src="/assets/face-icon.png">
+                    <img class="icon" src="./assets/face-icon.png">
                 </div>
                 <div class="visualizer-container">
                     <canvas class="visualizer" data-db="30"></canvas>
@@ -281,7 +281,7 @@
             <td id="audio5">
                 <div class="pair">
                     <h2>Jackhammer</h2>
-                    <img class="icon" src="/assets/face-icon.png">
+                    <img class="icon" src="./assets/face-icon.png">
                 </div>
                 <div class="visualizer-container">
                     <canvas class="visualizer" data-db="100"></canvas>
@@ -297,7 +297,7 @@
             <td id="audio2">
                 <div class="pair">
                     <h2>Normal <br> Conversation</h2>
-                    <img class="icon" src="/assets/face-icon.png">
+                    <img class="icon" src="./assets/face-icon.png">
                 </div>
                 <div class="visualizer-container">
                     <canvas class="visualizer" data-db="50"></canvas>
@@ -309,7 +309,7 @@
             <td id="audio6">
                 <div class="pair">
                     <h2>Rifle <br> Firing</h2>
-                    <img class="icon" src="/assets/face-icon.png">
+                    <img class="icon" src="./assets/face-icon.png">
                 </div>
                 <div class="visualizer-container">
                     <canvas class="visualizer" data-db="160"></canvas>
@@ -475,7 +475,7 @@
                 // Get cell and audio info
                 const $cell = $(this);
                 const audioIndex = $cell.attr('id').replace(/\D+/, '');
-                const audioSrc = '/audio/' + audioFiles[audioIndex];
+                const audioSrc = './audio/' + audioFiles[audioIndex];
                 const $canvas = $cell.find('canvas.visualizer');
                 const dbLevel = parseInt($canvas.data('db'));
 
