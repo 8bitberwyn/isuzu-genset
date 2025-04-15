@@ -1,0 +1,637 @@
+<!-- 
+    Dimensions of IPad: 1366 × 1024	
+    Need icons and images (generator uncoloured, sound example icons, other audio)
+        Interactable generator that colors when you click on it 
+    
+    Also add the bar going up to X dB for each sound
+    Change sounds to new sounds along with logos
+-->
+
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Isuzu Generator Sound Demo</title>
+    <link rel="icon" type="image/png" href="/assets/logo.jpg">
+
+    <style>
+        html,
+        body {
+            height: 1024px;
+            width: 1366px;
+            margin: 0;
+            padding: 0
+        }
+
+        h2 {
+            width: 60%;
+            font-size: 2.2em;
+            font-weight: 500;
+            margin: 0;
+            padding: 0;
+            text-align: right;
+        }
+
+        td.active h2 {
+            width: 100%;
+            font-size: 1.6em;
+            text-align: center;
+            color: white;
+            position: absolute;
+            top: 10%;
+        }
+
+        td.active br {
+            display: none;
+        }
+
+        h2.center-title, td.active h2.center-title{
+            display: block;
+            width: 100%;
+            text-align: center;
+            font-size: 3.2em;
+            margin-top: 0;
+            position: absolute;
+            top: 90px;
+            left: 50%;
+            transform: translateX(-50%);
+            color: black;
+        }
+
+        h2.center-title .red-text {
+            color: rgb(235, 0, 0);
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        strong {
+            display: block;
+            font-size: 1.7rem;
+            line-height: 18px;
+            margin-top: 10px;
+            font-weight: 500;
+        }
+
+        table {
+            height: 100%;
+            border-collapse: collapse;
+        }
+
+        td {
+            position: relative;
+            width: 28%;
+            height: 33%;
+            text-align: center;
+            vertical-align: middle;
+            cursor: pointer;
+            background-image: linear-gradient(to bottom, rgb(230, 230, 230), rgb(250, 250, 250));
+        }
+
+        td.active {
+            background-image: linear-gradient(to bottom, rgb(243, 0, 0), rgb(182, 0, 0));
+        }
+
+        td[rowspan="3"], td[rowspan="3"].active {
+            width: 42%;
+            height: 100%;
+            background-image:
+                linear-gradient(to top, white, transparent 0%),
+                linear-gradient(to bottom, white, transparent 40%),
+                url('/assets/bg.jpg');
+            background-position: center;
+            background-size: cover;
+            background-position: center;
+        }
+
+        .pair {
+            display: flex;
+            flex: row;
+            align-items: center;
+        }
+
+        .icon {
+            width: 100px;
+            position: relative;
+            margin: 0;
+            mix-blend-mode: multiply;
+            object-fit: contain;
+            overflow: hidden;
+        }
+
+        td.active .icon {
+            display: none;
+        }
+
+        .single {
+            padding-top: 9px;
+        }
+
+        .subtext {
+            font-size: 20px;
+            line-height: 27px;
+            font-weight: 300;
+            margin: 0;
+        }
+
+        .logo {
+            width: 25%;
+            position: absolute;
+            top: 0px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .generator-img {
+            width: 78%;
+            display: block;
+            margin: auto;
+            position: relative;
+            bottom: 25px;
+            object-fit: contain;
+            overflow: hidden;
+        }
+
+        .trapezium {
+            position: absolute;
+            bottom: 0px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60%;
+            height: 18%;
+            background: black;
+            color: white;
+            text-align: center;
+            line-height: 15px;
+            clip-path: polygon(20% 0%, 80% 0%, 100% 100%, 0% 100%);
+            font-size: 14px;
+            font-weight: bold;
+            padding-top: 10px;
+        }
+
+        .trapezium-middle {
+            position: absolute;
+            bottom: 0px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 50%;
+            height: 8%;
+            background: black;
+            color: white;
+            text-align: center;
+            clip-path: polygon(20% 0%, 80% 0%, 100% 100%, 0% 100%);
+            display: flex;
+            justify-content: center;
+            align-items: start;
+        }
+
+        .trapezium-middle .single{
+            margin-top: 25px;
+        }
+
+        td.active .trapezium {
+                background-image: linear-gradient(to bottom,rgb(182, 0, 0), rgb(221, 0, 0));
+        }
+
+        .visualizer-container {
+            display: none;
+        }
+
+        td.active .visualizer-container {
+            display: flex;
+            width: 75%;
+            height: 60px;
+            margin: auto;
+            position: relative;
+        }
+
+        td.active .visualizer-container-middle {
+            position: absolute;
+            top: 33%;
+            left: 58.5%;
+            transform: translate(-50%, -50%);
+            width: 75%;
+            height: 60px;
+        }
+
+        canvas.visualizer {
+            width: 100%;
+            height: 100%;
+            display: block;
+        }
+    </style>
+</head>
+
+<body>
+    <table width="1366px" height="1024px" border="2px" cellspacing="0" cellpadding="0">
+        <tr>
+            <td id="audio0">
+                <div class="pair">
+                    <h2>Calm <br> Breathing</h2>
+                    <img class="icon" src="/assets/face-icon.png">
+                </div>
+
+                <div class="visualizer-container">
+                    <canvas class="visualizer" data-db="10"></canvas>
+                </div>
+                <div class="trapezium">
+                    <strong class="single">10dB</strong>
+                </div>
+            </td>
+            <td id="audio3" rowspan="3">
+                <a class="reload" onClick="window.location.reload();">
+                    <img class="logo" src="/assets/logo.jpg">
+                </a>
+                <h2 class="center-title"><span class="red-text">Isuzu</span>Generator Running</h2>
+                <!-- <div class="visualizer-container-middle">
+                    <canvas class="visualizer" data-db="55"></canvas>
+                </div> -->
+                <img class="generator-img" src="/assets/generator2.png">
+                <div class="trapezium-middle">
+                    <strong class="single">51 - 57dB</strong>
+                </div>
+            </td>
+            <td id="audio4">
+                <div class="pair">
+                    <h2>Loud <br> Conversation</h2>
+                    <img class="icon" src="/assets/face-icon.png">
+                </div>
+                <div class="visualizer-container">
+                    <canvas class="visualizer" data-db="60"></canvas>
+                </div>
+                <div class="trapezium">
+                    <strong>60dB<br>
+                        <p class="subtext">(2x the volume)</p>
+                    </strong>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td id="audio1">
+                <div class="pair">
+                    <h2>Quiet <br> Room</h2>
+                    <img class="icon" src="/assets/face-icon.png">
+                </div>
+                <div class="visualizer-container">
+                    <canvas class="visualizer" data-db="30"></canvas>
+                </div>
+                <div class="trapezium">
+                    <strong class="single">30dB</strong>
+                </div>
+            </td>
+            <td id="audio5">
+                <div class="pair">
+                    <h2>Jackhammer</h2>
+                    <img class="icon" src="/assets/face-icon.png">
+                </div>
+                <div class="visualizer-container">
+                    <canvas class="visualizer" data-db="100"></canvas>
+                </div>
+                <div class="trapezium">
+                    <strong>100dB<br>
+                        <p class="subtext">(32x the volume)</p>
+                    </strong>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td id="audio2">
+                <div class="pair">
+                    <h2>Normal <br> Conversation</h2>
+                    <img class="icon" src="/assets/face-icon.png">
+                </div>
+                <div class="visualizer-container">
+                    <canvas class="visualizer" data-db="50"></canvas>
+                </div>
+                <div class="trapezium">
+                    <strong class="single">50dB</strong>
+                </div>
+            </td>
+            <td id="audio6">
+                <div class="pair">
+                    <h2>Rifle <br> Firing</h2>
+                    <img class="icon" src="/assets/face-icon.png">
+                </div>
+                <div class="visualizer-container">
+                    <canvas class="visualizer" data-db="160"></canvas>
+                </div>
+                <div class="trapezium">
+                    <strong>160dB<br>
+                        <p class="subtext">(2,048x the volume)</p>
+                    </strong>
+                </div>
+            </td>
+        </tr>
+    </table>
+
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"
+        integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+    <script>
+        var audioFiles = [
+            // Quiet
+            '10db_calm-breathing.mp3',
+            '30db_quiet-room.mp3',
+            '50db_normal-conversation.mp3',
+            // Hero
+            '55db_isuzu-generator.mp3',
+            // Loud
+            '60db_loud-conversation.mp3',
+            // '70db_vacuum-cleaner.mp3' ,
+            '100db_jackhammer.mp3',
+            '170db_rifle-firing.mp3'
+        ];
+
+        // Web Audio API Context
+        let audioContext;
+        let analyser;
+        let dataArray;
+        let source;
+        let currentVisualizer;
+        let animationFrame;
+        let currentAudioElement;
+
+        // Initialize audio context
+        function initAudio() {
+            // Create audio context if it doesn't exist
+            if (!audioContext) {
+                audioContext = new (window.AudioContext || window.webkitAudioContext)();
+                analyser = audioContext.createAnalyser();
+                analyser.fftSize = 256;
+                const bufferLength = analyser.frequencyBinCount;
+                dataArray = new Uint8Array(bufferLength);
+            }
+        }
+
+        // Draw the visualization
+        // Draw the visualization - simplified to only use bars
+        function draw(canvas, dbLevel, isAudio3 = false) {
+            // Scale the visualization based on the decibel level
+            const amplification = dbLevel / 40;
+
+            // Get drawing context
+            const canvasCtx = canvas.getContext('2d');
+            const width = canvas.width;
+            const height = canvas.height;
+
+            // Clear canvas
+            canvasCtx.clearRect(0, 0, width, height);
+
+            // Get frequency data
+            analyser.getByteFrequencyData(dataArray);
+
+            // Use bar visualization for all sound levels
+            drawBars(canvasCtx, width, height, amplification, isAudio3);
+
+            // Continue animation
+            animationFrame = requestAnimationFrame(() => draw(canvas, dbLevel, isAudio3));
+        }
+
+
+        // Draw bar visualization for all sounds
+        function drawBars(canvasCtx, width, height, amplification, isAudio3 = false) {
+            const barWidth = width / dataArray.length * 2.5;
+            let x = 0;
+            console.log(isAudio3)
+
+            for (let i = 0; i < dataArray.length; i++) {
+                // Skip some bars for better visual spacing
+                if (i % 2 !== 0) continue;
+
+                const barHeight = (dataArray[i] / 255) * height * amplification * 0.8;
+
+                // Set the color to red if it's audio3, otherwise white
+                canvasCtx.fillStyle = isAudio3 ? 'rgb(255, 0, 0)' : 'rgb(250, 250, 250)';
+
+                // Center the bars vertically
+                canvasCtx.fillRect(x, (height - barHeight) / 2, barWidth, barHeight);
+                x += barWidth + 1;
+            }
+        }
+
+        // Draw complex waveform (for loud sounds)
+        function drawWaveform(canvasCtx, width, height, amplification) {
+            // Start path
+            canvasCtx.beginPath();
+            canvasCtx.lineWidth = 2;
+            canvasCtx.strokeStyle = 'rgb(0, 0, 0)';
+
+            // Calculate step size
+            const sliceWidth = width / dataArray.length;
+            let x = 0;
+
+            // First half of the waveform (top)
+            for (let i = 0; i < dataArray.length; i++) {
+                const v = (dataArray[i] / 128.0) * amplification;
+                const y = (height / 2) - v * (height / 4);
+
+                if (i === 0) {
+                    canvasCtx.moveTo(x, y);
+                } else {
+                    canvasCtx.lineTo(x, y);
+                }
+
+                x += sliceWidth;
+            }
+
+            // Complete the waveform (bottom reflection with variation)
+            for (let i = dataArray.length - 1; i >= 0; i--) {
+                const v = (dataArray[i] / 128.0) * amplification * (0.8 + Math.random() * 0.4);
+                const y = (height / 2) + v * (height / 4);
+                canvasCtx.lineTo(x, y);
+                x -= sliceWidth;
+            }
+
+            canvasCtx.stroke();
+            canvasCtx.closePath();
+
+            // Add some chaotic lines for very loud sounds
+            if (amplification > 2) {
+                for (let i = 0; i < 5; i++) {
+                    const startX = Math.random() * width;
+                    const startY = Math.random() * height;
+                    const endX = startX + (Math.random() - 0.5) * 100;
+                    const endY = startY + (Math.random() - 0.5) * 100;
+
+                    canvasCtx.beginPath();
+                    canvasCtx.moveTo(startX, startY);
+                    canvasCtx.lineTo(endX, endY);
+                    canvasCtx.stroke();
+                }
+            }
+        }
+
+        jQuery(function ($) {
+            // Setup canvas sizes
+            $('canvas.visualizer').each(function () {
+                const canvas = $(this)[0];
+                // Set actual dimensions for best rendering
+                canvas.width = $(this).parent().width();
+                canvas.height = $(this).parent().height();
+                // Hide canvas initially
+                $(this).hide();
+            });
+
+            // Modified click handler to reset visualizations properly
+            $(document).on('click', 'td', function (e) {
+                // Get cell and audio info
+                const $cell = $(this);
+                const audioIndex = $cell.attr('id').replace(/\D+/, '');
+                const audioSrc = '/audio/' + audioFiles[audioIndex];
+                const $canvas = $cell.find('canvas.visualizer');
+                const dbLevel = parseInt($canvas.data('db'));
+
+                // Lets user click between audios with a working animation
+                $(document).ready(function () {
+                    let currentAudioElement = null;
+                    let currentCanvas = null;
+                    let animationFrame;
+
+                    $("td").click(function () {
+                        // Get the audio index from the td ID
+                        let audioIndex = parseInt(this.id.replace("audio", ""), 10);
+                        if (isNaN(audioIndex)) return;
+
+                        // Get the corresponding audio file
+                        let audioFile = audioFiles[audioIndex];
+                        if (!audioFile) return;
+
+                        // Stop previous audio and animation
+                        if (currentAudioElement) {
+                            currentAudioElement.pause();
+                            currentAudioElement.currentTime = 0;
+                        }
+                        if (animationFrame) {
+                            cancelAnimationFrame(animationFrame);
+                            isAudio3 = false;
+                        }
+
+                        // Remove active class from all, then add to the clicked one
+                        $("td").removeClass("active");
+                        $(this).addClass("active");
+
+                        // Play new audio
+                        currentAudioElement = new Audio(audioFile);
+                        currentAudioElement.play();
+
+                        // Get the visualizer canvas
+                        let canvas = $(this).find("canvas.visualizer")[0];
+                        if (!canvas) return;
+
+                        // Initialize Web Audio API if not done yet
+                        initAudio();
+
+                        // Set up audio processing
+                        let source = audioContext.createMediaElementSource(currentAudioElement);
+                        source.connect(analyser);
+                        analyser.connect(audioContext.destination);
+
+                        // Start animation
+                        let dbLevel = parseInt(canvas.dataset.db, 10) || 50;
+                        currentCanvas = canvas;
+                        draw(currentCanvas, dbLevel);
+                    });
+                });
+
+                // Check if it's audio3 and pass the flag
+                const isAudio3 = $cell.attr('id') === 'audio3';
+                console.log(isAudio3)
+
+                // Initialize Web Audio API
+                initAudio();
+
+                // Stop previous audio and visualization
+                if (currentAudioElement) {
+                    currentAudioElement.pause();
+                    currentAudioElement.currentTime = 0;
+
+                    // Stop animation
+                    if (animationFrame) {
+                        cancelAnimationFrame(animationFrame);
+                        animationFrame = null;
+                    }
+
+                    // Reset all cells
+                    $('td.active').removeClass('active');
+
+                    // Reset all canvases to a clear state
+                    $('canvas.visualizer').each(function () {
+                        const ctx = this.getContext('2d');
+                        ctx.clearRect(0, 0, this.width, this.height);
+                    });
+
+                    // Hide all canvases
+                    $('canvas.visualizer').hide();
+
+                    // Disconnect previous source
+                    if (source) {
+                        source.disconnect();
+                        source = null;
+                    }
+                }
+
+                // Set active states
+                $cell.addClass('active');
+
+                // Show canvas
+                $canvas.show();
+
+                // Create new audio element
+                currentAudioElement = new Audio(audioSrc);
+
+                // Play audio and connect to analyzer
+                currentAudioElement.addEventListener('canplaythrough', function () {
+                    // Create media source from audio element
+                    source = audioContext.createMediaElementSource(currentAudioElement);
+
+                    // Connect the audio chain
+                    source.connect(analyser);
+                    analyser.connect(audioContext.destination);
+
+                    // Start visualization
+                    currentVisualizer = $canvas[0];
+
+                    // Clear the canvas before starting new visualization
+                    const ctx = currentVisualizer.getContext('2d');
+                    ctx.clearRect(0, 0, currentVisualizer.width, currentVisualizer.height);
+
+                    // Play the audio
+                    currentAudioElement.play();
+
+                    // Start new animation
+                    draw(currentVisualizer, dbLevel, isAudio3); // Pass isAudio3 flag
+                });
+
+                // Reset when audio ends
+                currentAudioElement.addEventListener('ended', function () {
+                    // Reset cell appearance
+                    $cell.removeClass('active');
+
+                    // Stop visualization
+                    if (animationFrame) {
+                        cancelAnimationFrame(animationFrame);
+                        animationFrame = null;
+                    }
+
+                    // Clear the canvas to reset visualization
+                    const ctx = currentVisualizer.getContext('2d');
+                    ctx.clearRect(0, 0, currentVisualizer.width, currentVisualizer.height);
+
+                    // Hide canvas
+                    $canvas.hide();
+
+                    // Disconnect source
+                    source.disconnect();
+
+                    // Reset variables
+                    currentAudioElement = null;
+                    source = null;
+                    currentVisualizer = null;
+                });
+
+                // Load the audio
+                currentAudioElement.load();
+            });
+        });
+    </script>
+</body>
+
+</html>
