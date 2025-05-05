@@ -4,7 +4,8 @@
 <head>
     <title>Isuzu Generator Sound Demo</title>
     <link rel="icon" type="image/png" href="/assets/logo.jpg">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-SgOJa3DmI69IUzQ2PVdRZhwQ+dy64/BUtbMJw1MZ8t5HZApcHrRKUc4W0kG879m7" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-SgOJa3DmI69IUzQ2PVdRZhwQ+dy64/BUtbMJw1MZ8t5HZApcHrRKUc4W0kG879m7" crossorigin="anonymous">
     <style>
         html,
         body {
@@ -38,7 +39,8 @@
             display: none;
         }
 
-        h2.center-title, td.active h2.center-title{
+        h2.center-title,
+        td.active h2.center-title {
             display: block;
             width: 100%;
             text-align: center;
@@ -84,7 +86,8 @@
             background-image: linear-gradient(to bottom, rgb(243, 0, 0), rgb(182, 0, 0));
         }
 
-        td[rowspan="3"], td[rowspan="3"].active {
+        td[rowspan="3"],
+        td[rowspan="3"].active {
             width: 42%;
             height: 100%;
             background-image:
@@ -136,7 +139,8 @@
             transform: translateX(-50%);
         }
 
-        .colour-img, .outline-img {
+        .colour-img,
+        .outline-img {
             width: 78%;
             position: absolute;
             left: 50%;
@@ -150,9 +154,6 @@
             display: none;
         }
 
-        td.active .-img {
-
-        }   
         .trapezium {
             position: absolute;
             bottom: 0px;
@@ -169,7 +170,7 @@
             font-weight: bold;
             padding-top: 10px;
             background-color: rgb(0, 0, 0);
-            
+
         }
 
         .trapezium-middle {
@@ -188,12 +189,12 @@
             align-items: start;
         }
 
-        .trapezium-middle .single{
+        .trapezium-middle .single {
             margin-top: 25px;
         }
 
         td.active .trapezium {
-                background-image: linear-gradient(to bottom,rgb(182, 0, 0), rgb(221, 0, 0));
+            background-image: linear-gradient(to bottom, rgb(182, 0, 0), rgb(221, 0, 0));
         }
 
         .visualiser-container {
@@ -231,7 +232,8 @@
             transform: translateX(-50%);
             width: 85%;
             height: 80px;
-            display: block; /* Always visible */
+            display: block;
+            /* Always visible */
         }
 
         .decibel-meter {
@@ -247,18 +249,18 @@
         .decibel-gradient {
             width: 100%;
             height: 100%;
-            background: linear-gradient(to right, 
-                rgb(66, 182, 66) 0%, 
-                rgb(127, 204, 51) 10%, 
-                rgb(177, 210, 37) 20%, 
-                rgb(208, 195, 31) 30%, 
-                rgb(231, 176, 24) 40%, 
-                rgb(237, 153, 17) 50%, 
-                rgb(242, 130, 12) 60%, 
-                rgb(246, 106, 6) 70%, 
-                rgb(250, 82, 3) 80%, 
-                rgb(251, 57, 2) 90%, 
-                rgb(250, 32, 3) 100%);
+            background: linear-gradient(to right,
+                    rgb(66, 182, 66) 0%,
+                    rgb(127, 204, 51) 10%,
+                    rgb(177, 210, 37) 20%,
+                    rgb(208, 195, 31) 30%,
+                    rgb(231, 176, 24) 40%,
+                    rgb(237, 153, 17) 50%,
+                    rgb(242, 130, 12) 60%,
+                    rgb(246, 106, 6) 70%,
+                    rgb(250, 82, 3) 80%,
+                    rgb(251, 57, 2) 90%,
+                    rgb(250, 32, 3) 100%);
         }
 
         .decibel-numbers {
@@ -306,6 +308,166 @@
             width: 75%;
             height: 60px;
         }
+
+        .idle-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image:
+                linear-gradient(to bottom, rgba(255, 255, 255, 0) 20%, rgba(255, 255, 255, 0.8) 50%, white 80%),
+                url('/assets/bg.jpg');
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-position: top center;
+            z-index: 1000;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            opacity: 1;
+            transition: opacity 0.3s ease;
+        }
+        
+        .idle-overlay.hidden {
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        .idle-logo-container {
+            position: absolute;
+            top: 0;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+        }
+
+        .idle-logo {
+            width: 200px;
+            padding: 0;
+            margin: 0;
+        }
+
+        .idle-content {
+            text-align: center;
+            max-width: 80%;
+        }
+
+        .idle-title {
+            font-size: 4.5rem;
+            font-weight: bold;
+            margin-bottom: 20px;
+            line-height: 1.1;
+        }
+
+        .idle-description {
+            font-size: 1.8rem;
+            line-height: 1.4;
+            margin-bottom: 40px;
+        }
+
+        .idle-cta {
+            color: #eb0000;
+            font-size: 2.2rem;
+            font-weight: bold;
+        }
+
+        /* Idle Overlay Styles - Keeping your animation elements */
+        .cursor-animation {
+            position: relative;
+            width: 100px;
+            height: 100px;
+            margin-top: 30px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .cursor {
+            position: absolute;
+            width: 40px;
+            height: 40px;
+            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><path d="M3 3l7.07 16.97 2.51-7.39 7.39-2.51L3 3z"/></svg>');
+            background-repeat: no-repeat;
+            background-size: contain;
+            transform-origin: 20% 20%;
+            animation: cursorMove 3s infinite;
+            filter: invert(1);
+        }
+
+        .click-ripple {
+            position: absolute;
+            width: 0;
+            height: 0;
+            border-radius: 50%;
+            background-color: rgba(235, 0, 0, 0.5);
+            /* Red ripple matching Isuzu brand */
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            animation: clickRipple 3s infinite;
+            opacity: 0;
+        }
+
+        @keyframes cursorMove {
+    0%, 100% {
+        left: 100px;
+        top: 100px;
+        transform: scale(1);
+    }
+
+    40% {
+        left: 50px;
+        top: 50px;
+    }
+
+    45% {
+        transform: scale(0.9); /* Simulate click press */
+    }
+
+    50% {
+        transform: scale(1);   /* Simulate click release */
+        left: 50px;
+        top: 50px;
+    }
+
+    60% {
+        left: 50px;
+        top: 50px;
+    }
+
+    80% {
+        left: 100px;
+        top: 100px;
+    }
+}
+
+@keyframes clickRipple {
+    0%, 44%, 100% {
+        width: 0;
+        height: 0;
+        opacity: 0;
+    }
+
+    45% {
+        width: 0;
+        height: 0;
+        opacity: 1;
+    }
+
+    47% {
+        width: 20px;
+        height: 20px;
+        opacity: 1;
+    }
+
+    55% {
+        width: 60px;
+        height: 60px;
+        opacity: 0;
+    }
+}
+
     </style>
 </head>
 
@@ -430,6 +592,23 @@
         </tr>
     </table>
 
+    <div class="idle-overlay" id="idleOverlay">
+        <div class="idle-logo-container">
+            <img src="./assets/logo.jpg" alt="Isuzu Logo" class="idle-logo">
+        </div>
+
+        <div class="idle-content">
+            <h1 class="idle-title">Listen to the<br>ultra-quiet technology</h1>
+            <p class="idle-description">Put on the headphones to experience<br>the low hum of our 20KVA model.</p>
+            <div class="idle-cta">Tap the screen to get started!</div>
+
+            <div class="cursor-animation">
+                <div class="cursor"></div>
+                <div class="click-ripple"></div>
+            </div>
+        </div>
+    </div>
+
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"
         integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
     <script>
@@ -459,6 +638,11 @@
         let currentAudioElement;
         let isAudioInitialized = false;
         let isAudioChanging = false;
+
+        // Idle timer variables
+        let idleTimer;
+        const idleTimeout = 5000; // 5 seconds
+        let isIdleOverlayShown = true;
 
         // Initialize audio context
         function initAudio() {
@@ -502,7 +686,7 @@
         // Draw the visualization
         function draw(canvas, dbLevel, isAudio3 = false) {
             if (!canvas) return;
-            
+
             // Scale the visualization based on the decibel level
             const amplification = dbLevel / 40;
 
@@ -550,10 +734,10 @@
             // Calculate position (percentage) based on dB level
             // Max dB in our scale is 150, so calculate percentage
             let percentage = Math.min((dbLevel / 155) * 100, 100);
-            
+
             // Update indicator
             $(".decibel-indicator").css("left", percentage + "%");
-            
+
             // Update the label
             $(".decibel-label").text(dbLevel + " dB");
         }
@@ -562,93 +746,93 @@
         function playAudio($cell, audioSrc, dbLevel) {
             if (isAudioChanging) return;
             isAudioChanging = true;
-            
+
             // Reset all cells
             $('td.active').removeClass('active');
-            
+
             // Set active state
             $cell.addClass('active');
-            
+
             // First, stop any playing audio
             stopCurrentAudio();
-            
+
             // Update decibel meter
             setDecibelIndicator(dbLevel);
-            
+
             // Find the canvas
             const $canvas = $cell.find('canvas.visualiser');
-            
+
             // Show the canvas
             $canvas.show();
-            
+
             // Initialize audio if needed
             if (!isAudioInitialized) {
                 initAudio();
             }
-            
+
             // Check if it's audio3
             const isAudio3 = $cell.attr('id') === 'audio3';
-            
+
             // Create new audio element
             currentAudioElement = new Audio(audioSrc);
-            
+
             // Set load listener
             currentAudioElement.addEventListener('canplay', function audioReadyHandler() {
                 // Remove the event listener to prevent multiple calls
                 currentAudioElement.removeEventListener('canplay', audioReadyHandler);
-                
+
                 try {
                     // Create media source from audio element
                     source = audioContext.createMediaElementSource(currentAudioElement);
-                    
+
                     // Connect the audio chain
                     source.connect(analyser);
                     analyser.connect(audioContext.destination);
-                    
+
                     // Start visualization
                     currentvisualiser = $canvas[0];
-                    
+
                     // Clear the canvas
                     const ctx = currentvisualiser.getContext('2d');
                     ctx.clearRect(0, 0, currentvisualiser.width, currentvisualiser.height);
-                    
+
                     // Play audio
                     currentAudioElement.play()
-                    .then(() => {
-                        // Start visualization
-                        draw(currentvisualiser, dbLevel, isAudio3);
-                        isAudioChanging = false;
-                    })
-                    .catch(e => {
-                        console.error("Audio play error:", e);
-                        isAudioChanging = false;
-                    });
+                        .then(() => {
+                            // Start visualization
+                            draw(currentvisualiser, dbLevel, isAudio3);
+                            isAudioChanging = false;
+                        })
+                        .catch(e => {
+                            console.error("Audio play error:", e);
+                            isAudioChanging = false;
+                        });
                 } catch (e) {
                     console.error("Audio setup error:", e);
                     isAudioChanging = false;
                 }
             });
-            
+
             // Handle audio end
-            currentAudioElement.addEventListener('ended', function() {
+            currentAudioElement.addEventListener('ended', function () {
                 // Reset cell
                 $cell.removeClass('active');
-                
+
                 // Stop visualization
                 if (animationFrame) {
                     cancelAnimationFrame(animationFrame);
                     animationFrame = null;
                 }
-                
+
                 // Clear canvas
                 if (currentvisualiser) {
                     const ctx = currentvisualiser.getContext('2d');
                     ctx.clearRect(0, 0, currentvisualiser.width, currentvisualiser.height);
                 }
-                
+
                 // Hide canvas
                 $canvas.hide();
-                
+
                 // Reset variables
                 if (source) {
                     source.disconnect();
@@ -656,15 +840,47 @@
                 }
                 currentAudioElement = null;
                 currentvisualiser = null;
-                
+
                 // Reset decibel indicator
                 setDecibelIndicator(2);
-                
+
                 isAudioChanging = false;
             });
-            
+
             // Load audio
             currentAudioElement.load();
+        }
+
+        // Show idle overlay
+        function showIdleOverlay() {
+            if (!isIdleOverlayShown) {
+                $('#idleOverlay').removeClass('hidden');
+                isIdleOverlayShown = true;
+
+                // If we're already playing audio, stop it
+                if (currentAudioElement) {
+                    stopCurrentAudio();
+                    $('td.active').removeClass('active');
+                }
+            }
+        }
+
+        // Hide idle overlay
+        function hideIdleOverlay() {
+            if (isIdleOverlayShown) {
+                $('#idleOverlay').addClass('hidden');
+                isIdleOverlayShown = false;
+            }
+            resetIdleTimer();
+        }
+
+        // Reset idle timer
+        function resetIdleTimer() {
+            // Clear any existing timer
+            clearTimeout(idleTimer);
+
+            // Set a new timer
+            idleTimer = setTimeout(showIdleOverlay, idleTimeout);
         }
 
         jQuery(function ($) {
@@ -682,41 +898,72 @@
 
             // Click handler for all cells including audio3
             $(document).on('click', 'td', function (e) {
+                // Hide idle overlay if shown
+                hideIdleOverlay();
+
                 // Prevent clicking on logo/reload button from triggering audio
                 if ($(e.target).hasClass('logo') || $(e.target).hasClass('reload')) {
                     return;
                 }
-                
+
                 // Get cell and audio info
                 const $cell = $(this);
                 const audioId = $cell.attr('id');
                 const audioIndex = parseInt(audioId.replace(/\D+/, ''));
                 const audioSrc = '/audio/' + audioFiles[audioIndex];
                 const dbLevel = dbLevels[audioIndex];
-                
+
                 // Play the audio
                 playAudio($cell, audioSrc, dbLevel);
             });
 
+            // Click handler for idle overlay - MODIFIED to just hide the overlay without playing audio
+            $('#idleOverlay').on('click', function () {
+                // Just hide the overlay, don't play any audio
+                hideIdleOverlay();
+            });
+
             // Add touch support
             $(document).on('touchstart', 'td', function (e) {
+                // Hide idle overlay if shown
+                hideIdleOverlay();
+
                 // Prevent default touch behavior
                 e.preventDefault();
-                
+
                 // Prevent clicking on logo/reload button from triggering audio
                 if ($(e.target).hasClass('logo') || $(e.target).hasClass('reload')) {
                     return;
                 }
-                
+
                 // Get cell and audio info
                 const $cell = $(this);
                 const audioId = $cell.attr('id');
                 const audioIndex = parseInt(audioId.replace(/\D+/, ''));
                 const audioSrc = '/audio/' + audioFiles[audioIndex];
                 const dbLevel = dbLevels[audioIndex];
-                
+
                 // Play the audio
                 playAudio($cell, audioSrc, dbLevel);
+            });
+
+            // Touch handler for idle overlay - MODIFIED to just hide the overlay without playing audio
+            $('#idleOverlay').on('touchstart', function(e) {
+                e.preventDefault();
+                // Just hide the overlay, don't play any audio
+                hideIdleOverlay();
+            });
+
+            // Initialize idle timer
+            resetIdleTimer();
+
+            // Reset idle timer on mouse movement, touch or keyboard input
+            $(document).on('mousemove touchstart touchmove keydown', function () {
+                if (isIdleOverlayShown) {
+                    hideIdleOverlay();
+                } else {
+                    resetIdleTimer();
+                }
             });
         });
     </script>
