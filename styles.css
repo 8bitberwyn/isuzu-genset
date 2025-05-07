@@ -86,7 +86,8 @@ td.active h2.center-title {
 }
 
 h2.center-title .red-text {
-    color: rgb(235, 0, 0);
+    /* color: rgb(235, 0, 0); */
+    color: rgb(0, 0, 0);
     display: block;
     margin-bottom: 5px;
 }
@@ -142,17 +143,24 @@ td[rowspan="3"].active {
     width: 100px;
     position: relative;
     margin: 0;
-    mix-blend-mode: multiply;
+    background-color: white; /* ensures a white base */
+    mix-blend-mode: darken;
     object-fit: contain;
     overflow: hidden;
     max-height: 100px;
+
 }
 
 td.active .icon {
     display: none;
 }
 
+td.active .single {
+    color: black;
+}
+
 .single {
+    color: rgb(255, 255, 255);
     padding-top: 9px;
 }
 
@@ -172,7 +180,7 @@ td.active .icon {
 }
 
 .image-container {
-    width: 75%;
+    width: 90%;
     position: absolute;
     left: 50%;
     bottom: 50%;
@@ -181,7 +189,7 @@ td.active .icon {
 
 
 .outline-img {
-    width: 95%;
+    width: 100%;
     position: absolute;
     left: 50%;
     bottom: 50%;
@@ -244,7 +252,7 @@ td.active .outline-img {
 }
 
 td.active .trapezium {
-    background-image: linear-gradient(to bottom, rgb(182, 0, 0), rgb(221, 0, 0));
+    background-image: linear-gradient(to bottom, rgb(232, 232, 232), rgb(255, 255, 255));
 }
 
 .visualiser-container {
@@ -417,6 +425,14 @@ canvas.visualiser {
 }
 
 .idle-description {
+    font-family: 'Shorai Sans', sans-serif;
+    font-size: 1.8rem;
+    line-height: 1.4;
+    margin-bottom: 40px;
+}
+
+.idle-description2 {
+    font-family: 'Arial', sans-serif;
     font-size: 1.8rem;
     line-height: 1.4;
     margin-bottom: 40px;
