@@ -1,41 +1,44 @@
 @font-face {
     font-family: 'Shorai Sans';
-    src: url('font/ShoraiSansStdN-Regular.otf') format('opentype');
+    src: url('/font/ShoraiSansStdN-Regular.woff2') format('woff2');
     font-weight: 400;
     font-style: normal;
 }
 
 @font-face {
     font-family: 'Shorai Sans';
-    src: url('font/ShoraiSansStdN-Light.otf') format('opentype');
+    src: url('/font/ShoraiSansStdN-Light.woff2') format('woff2');
     font-weight: 300;
     font-style: normal;
 }
 
 @font-face {
     font-family: 'Shorai Sans';
-    src: url('font/ShoraiSansStdN-Medium.otf') format('opentype');
+    src: url('/font/ShoraiSansStdN-Medium.woff2') format('woff2');
     font-weight: 500;
     font-style: normal;
 }
 
 @font-face {
     font-family: 'Shorai Sans';
-    src: url('font/ShoraiSansStdN-Bold.otf') format('opentype');
+    src: url('/font/ShoraiSansStdN-Bold.woff2') format('woff2');
     font-weight: 700;
     font-style: normal;
 }
-
 
 html,
 body {
     font-family: 'Shorai Sans', sans-serif;
     height: 1024px;
     width: 1366px;
-    padding: 0
+    padding: 0;
 }
 
-/* For specific weights */
+/* Make sure all text elements use Shorai Sans */
+h1, h2, h3, h4, h5, h6, p, div, span, strong, .idle-title, .idle-description, .idle-cta, .decibel-numbers, .decibel-label {
+    font-family: 'Shorai Sans', sans-serif;
+}
+
 .light-text {
     font-weight: 300;
 }
@@ -168,9 +171,27 @@ td.active .icon {
     transform: translateX(-50%);
 }
 
-.colour-img,
+.image-container {
+    width: 75%;
+    position: absolute;
+    left: 50%;
+    bottom: 50%;
+    transform: translate(-50%, 50%);
+}
+
+
 .outline-img {
-    width: 78%;
+    width: 95%;
+    position: absolute;
+    left: 50%;
+    bottom: 50%;
+    object-fit: contain;
+    overflow: hidden;
+    transform: translate(-50%, 50%);
+}
+
+.colour-img {
+    width: 100%;
     position: absolute;
     left: 50%;
     bottom: 50%;
@@ -425,7 +446,7 @@ canvas.visualiser {
     background-repeat: no-repeat;
     background-size: contain;
     transform-origin: 20% 20%;
-    animation: cursorMove 3s infinite;
+    animation: cursorMove 2.5s infinite;
     filter: invert(0);
 }
 
@@ -439,7 +460,7 @@ canvas.visualiser {
     left: 50%;
     top: 50%;
     transform: translate(-50%, -50%);
-    animation: clickRipple 3s infinite;
+    animation: clickRipple 2.5s infinite;
     opacity: 0;
 }
 
@@ -458,7 +479,9 @@ canvas.visualiser {
     }
 
     45% {
-        transform: scale(0.9);
+        transform: scale(0.75);
+        left: 45px;
+        top: 45px;
         /* Simulate click press */
     }
 
@@ -476,6 +499,8 @@ canvas.visualiser {
 
     80% {
         left: 75px;
+        top: 75px;
+
     }
 }
 
